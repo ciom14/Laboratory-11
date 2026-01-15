@@ -1,0 +1,113 @@
+{% extends 'notes/base.html' %}
+
+{% block title %}Мои заметки{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>
+        {% if user.is_staff or user.is_superuser %}
+            Все заметки (админ)
+        {% else %}
+            Мои заметки
+        {% endif %}
+    </h1>
+    <a href="{% url 'note_create' %}" class="btn btn-primary">+ Создать заметку</a>
+</div>
+
+<!-- Отладочная информация (можно убрать после проверки) -->
+<div class="alert alert-info">
+    <strong>Отладка:</strong>
+    <ul>
+        <li>Всего заметок: {{ notes.count }}</li>
+        <li>Поисковый запрос: "{{ search_query }}"</li>
+        <li>Тегов в системе: {{ all_tags.count }}</li>
+        {% if all_tags %}
+            <li>Доступные теги:
+                {% for tag in all_tags %}
+                    <span class="badge bg-secondary">{{ tag.name }}</span>
+                {% endfor %}
+            </li>
+        {% endif %}
+    </ul>
+</div>
+
+<!-- Форма поиска -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-2">
+            <div class="col-md-10">
+                <input type="text"
+                       name="query"
+                       value="{{ search_query }}"
+                       placeholder="Введите слово для поиска (тег, заголовок или текст)"
+                       class="form-control">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">🔍 Найти</button>
+            </div>
+        </form>
+
+        <!-- Быстрые теги -->
+        {% if all_tags %}
+        <div class="mt-3">
+            <small class="text-muted">Быстрый поиск по тегам:</small><br>
+            {% for tag in all_tags %}
+                <a href="?query={{ tag.name }}" class="badge bg-info text-decoration-none me-1 mb-1">
+                    {{ tag.name }}
+                </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if notes %}
+    <div class="row">
+        {% for note in notes %}
+        <div class="col-md-6 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ note.title }}</h5>
+                    <p class="card-text">{{ note.content|truncatewords:20 }}</p>
+
+                    <!-- Теги заметки с отладкой -->
+                    <div class="mb-2">
+                        <small class="text-muted">Теги этой заметки:</small><br>
+                        {% if note.tags.all %}
+                            {% for tag in note.tags.all %}
+                                <span class="badge bg-secondary me-1">{{ tag.name }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="badge bg-light text-dark">нет тегов</span>
+                        {% endif %}
+                    </div>
+
+                    {% if user.is_staff or user.is_superuser %}
+                    <div class="mb-2">
+                        <span class="badge bg-dark">👤 {{ note.user.username }}</span>
+                    </div>
+                    {% endif %}
+
+                    <div class="text-muted small">
+                        Создано: {{ note.created_at|date:"d.m.Y H:i" }}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'note_detail' note.pk %}" class="btn btn-sm btn-outline-primary">Просмотреть</a>
+                    <a href="{% url 'note_edit' note.pk %}" class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-warning">
+        {% if search_query %}
+            По запросу "{{ search_query }}" ничего не найдено.
+            <a href="{% url 'note_list' %}" class="alert-link">Показать все заметки</a>
+        {% else %}
+            Заметок пока нет. <a href="{% url 'note_create' %}" class="alert-link">Создайте первую заметку!</a>
+        {% endif %}
+    </div>
+{% endif %}
+{% endblock %}

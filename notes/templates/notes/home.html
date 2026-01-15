@@ -1,0 +1,27 @@
+{% extends 'notes/base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Список пользователей</h1>
+
+<div class="row">
+    {% for user in users %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ user.username }}</h5>
+                <p class="card-text">
+                    <strong>Email:</strong> {{ user.email }}<br>
+                    <strong>Количество заметок:</strong> {{ user.note_count }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <p>Пользователей пока нет.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
