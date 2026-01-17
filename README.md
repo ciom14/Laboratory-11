@@ -3,6 +3,9 @@
 504695 Карелина Милана
 503294 Мацеюк Артем
 504634 Халилов Чингиз
+
+Скринкаст: https://drive.google.com/file/d/17ZqM-48R76B_U8mVDxuB-ir13WZO-5Yo/view?usp=share_link
+
 # Notes App – система управления заметками на Django
 
 ## Краткое описание
@@ -61,5 +64,6 @@ notes/admin.py — настройка админки
 notes_app/settings.py — настройки проекта
 notes_app/urls.py — корневая маршрутизация
 ![sticker](https://github.com/user-attachments/assets/d79b9dbe-a308-4d36-a1fc-fe466b1a3901)
+
 
 
