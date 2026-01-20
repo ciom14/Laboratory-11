@@ -14,7 +14,7 @@
 ## Быстрый запуск проекта
 
 ### 1. Клонирование репозитория
-git clone [https://github.com/ваш-username/notes-app.git](https://github.com/ciom14/Laboratory-11.git)
+git clone [https://github.com/ciom14/Laboratory-11.git](https://github.com/ciom14/Laboratory-11.git)
 cd notes-app
 
 ### 2. Создание виртуального окружения
