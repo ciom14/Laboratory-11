@@ -14,7 +14,7 @@
 ## Быстрый запуск проекта
 
 ### 1. Клонирование репозитория
-git clone https://github.com/ваш-username/notes-app.git
+git clone [https://github.com/ваш-username/notes-app.git](https://github.com/ciom14/Laboratory-11.git)
 cd notes-app
 
 ### 2. Создание виртуального окружения
@@ -64,6 +64,7 @@ notes/admin.py — настройка админки
 notes_app/settings.py — настройки проекта
 notes_app/urls.py — корневая маршрутизация
 ![sticker](https://github.com/user-attachments/assets/d79b9dbe-a308-4d36-a1fc-fe466b1a3901)
+
 
 
 
