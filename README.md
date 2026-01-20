@@ -4,7 +4,7 @@
 503294 Мацеюк Артем
 504634 Халилов Чингиз
 
-Скринкаст: https://drive.google.com/file/d/17ZqM-48R76B_U8mVDxuB-ir13WZO-5Yo/view?usp=share_link
+Скринкаст: https://drive.google.com/file/d/1hUbwXsj9YrifHWCgGlrCXwV2Kl2A8bo1/view?usp=sharing
 
 # Notes App – система управления заметками на Django
 
@@ -86,6 +86,7 @@ URLs:
 
 
 ![sticker](https://github.com/user-attachments/assets/d79b9dbe-a308-4d36-a1fc-fe466b1a3901)
+
 
 
 
